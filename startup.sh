@@ -55,4 +55,4 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "Node-RED container is up and running on port 1880"
+echo "A Docker container is up and running the Node-RED project $PROJECT_NAME on port 1880"
