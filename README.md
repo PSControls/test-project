@@ -3,7 +3,7 @@ test-project
 
 This is a test project to test docker container and start up script functionality with Node-Red projects. 
 
-To run the project, type the following line into a linux terminal windo:
+To run the project, type the following line into a linux terminal window:
 curl -o - https://raw.githubusercontent.com/PSControls/test-project/main/startup.sh| bash
 
 ### About
