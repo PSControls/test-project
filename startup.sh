@@ -2,6 +2,7 @@
 
 # Define variables
 CONTAINER_NAME="nr-container"
+PROJECT_NAME = "test-project"
 DEST_DIR="$HOME/test-project-container"
 DOCKERFILE_URL="https://raw.githubusercontent.com/PSControls/test-project/main/Dockerfile"
 
