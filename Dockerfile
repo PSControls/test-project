@@ -8,19 +8,23 @@ ENV NODE_RED_VERSION=latest
 # Create necessary directories
 RUN mkdir -p ${PROJECT_DIR}
 
-# Install necessary packages and Node-RED as root
-RUN apk add --no-cache git \
-    && npm install -g --unsafe-perm node-red@${NODE_RED_VERSION} 
-    && npm install node-red-contrib-cip-ethernet-ip
-
 # Set the working directory
-WORKDIR ${PROJECT_DIR}
+WORKDIR /usr/app
 
+# Install necessary packages and Node-RED as root
+RUN apk update && apk add --no-cache git \
+    && echo "Installing Node-RED version ${NODE_RED_VERSION}" \
+    && npm install -g --unsafe-perm node-red@${NODE_RED_VERSION} 
+    
+WORKDIR ${PROJECT_DIR}
+    
 # Clone the GitHub repository as root
 RUN git clone https://github.com/PSControls/test-project.git ${PROJECT_DIR}
 
 # Change ownership of the project directory to the 'node' user
-RUN chown -R node:node ${PROJECT_DIR}
+RUN chown -R node:node ${PROJECT_DIR} \
+    && echo "Installing node-red-contrib-cip-ethernet-ip" \
+    && npm install --unsafe-perm node-red-contrib-cip-ethernet-ip
 
 # Switch to the 'node' user for better security
 USER node
@@ -30,3 +34,4 @@ EXPOSE 1880
 
 # Start Node-RED with the project directory
 CMD ["node-red", "--userDir", "/home/node-red/project"]
+
