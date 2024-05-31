@@ -1,7 +1,7 @@
 test-project
 ============
 
-test-project
+This is a test project to test docker container and start up script functionality with Node-Red projects
 
 ### About
 
